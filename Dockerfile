@@ -6,8 +6,10 @@ ENV PYTHONUNBUFFERED=1
 
 # 2. Security: Buat user non-root
 RUN addgroup --system app && adduser --system --ingroup app app \
-    && apt-get update && apt-get install -y --no-install-recommends ca-certificates \
-    && rm -rf /var/lib/apt/lists/*
+    && apt-get update \
+    && apt-get upgrade -y \
+    && apt-get install -y --no-install-recommends ca-certificates \
+    && rm -rf /var/lib/apt/lists/**
 
 WORKDIR /app
 
