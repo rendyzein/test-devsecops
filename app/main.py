@@ -35,7 +35,7 @@ def update_note(note_id: UUID, payload: NoteUpdate):
         raise HTTPException(status_code=404, detail="Note not found")
 
     from datetime import datetime
-    updated = note.copy(update={
+    updated = note.model_copy(update={
         "title": payload.title if payload.title is not None else note.title,
         "content": payload.content if payload.content is not None else note.content,
         "updated_at": datetime.utcnow(),
